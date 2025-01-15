@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "io.livekit.flutter.fliters.example.livekit_filter_plugin_example_example"
+    namespace = "io.livekit.flutter.fliters.krisp"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "io.livekit.flutter.fliters.example.livekit_filter_plugin_example_example"
+        applicationId = "io.livekit.flutter.fliters.krisp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

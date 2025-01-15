@@ -2,9 +2,9 @@ import 'package:livekit_client/livekit_client.dart';
 
 import 'method_channel.dart';
 
-class LivekitAudioFilter implements TrackProcessor<AudioProcessorOptions> {
+class KrispAudioFilter implements TrackProcessor<AudioProcessorOptions> {
   final methodChannel = MethodChannelStatic.methodChannel;
-  final String methodPrefix = 'audio_filter';
+  final String methodPrefix = 'krisp_audio_filter';
 
   @override
   Future<void> destroy() async {
@@ -19,7 +19,7 @@ class LivekitAudioFilter implements TrackProcessor<AudioProcessorOptions> {
   }
 
   @override
-  String get name => 'LivekiAudioFilter';
+  String get name => 'KrispAudioFilter';
 
   @override
   Future<void> onPublish(Room room) async {
@@ -32,7 +32,27 @@ class LivekitAudioFilter implements TrackProcessor<AudioProcessorOptions> {
   }
 
   @override
-  Future<void> restart() async {
+  Future<void> restart(options) async {
     await methodChannel.invokeMethod('${methodPrefix}_restart');
+  }
+
+  Future<void> updateRoomContext({
+    required String url,
+    required String token,
+    String? sid,
+    String? name,
+    String? serverVersion,
+    String? serverRegion,
+    ConnectionState? connectionState,
+  }) async {
+    await methodChannel.invokeMethod('${methodPrefix}_update_context', {
+      'url': url,
+      'token': token,
+      'sid': sid,
+      'name': name,
+      'serverVersion': serverVersion,
+      'serverRegion': serverRegion,
+      'connectionState': connectionState?.name,
+    });
   }
 }

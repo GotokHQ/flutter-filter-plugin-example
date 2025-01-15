@@ -1,8 +1,9 @@
-group = "io.livekit.flutter.fliters.example.livekit_filter_plugin_example"
+group = "io.livekit.flutter.fliters.krisp"
 version = "1.0-SNAPSHOT"
 
 buildscript {
     ext.kotlin_version = "1.8.22"
+
     repositories {
         google()
         mavenCentral()
@@ -25,7 +26,7 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    namespace = "io.livekit.flutter.fliters.example.livekit_filter_plugin_example"
+    namespace = "io.livekit.flutter.fliters.krisp"
 
     compileSdk = 35
 
@@ -48,9 +49,11 @@ android {
     }
 
     dependencies {
+        // Unit testing
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
 
+        // WebRTC dependency
         implementation 'io.github.webrtc-sdk:android:125.6422.03'
     }
 
@@ -59,14 +62,18 @@ android {
             useJUnitPlatform()
 
             testLogging {
-               events "passed", "skipped", "failed", "standardOut", "standardError"
-               outputs.upToDateWhen {false}
-               showStandardStreams = true
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
             }
         }
     }
 }
 
 dependencies {
+    // Flutter WebRTC plugin reference
     implementation project(':flutter_webrtc')
+    implementation "io.livekit:krisp-noise-filter:0.0.10"
+    // JTransforms FFT library
+    implementation 'com.github.wendykierp:JTransforms:3.1'
 }

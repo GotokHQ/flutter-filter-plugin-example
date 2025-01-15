@@ -3,7 +3,7 @@
 # Run `pod lib lint livekit_filter_plugin_example.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'livekit_filter_plugin_example'
+  s.name             = 'livekit_krisp_audio_filter'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
@@ -24,6 +24,7 @@ A new Flutter plugin project.
 
   s.dependency 'FlutterMacOS'
   s.dependency 'flutter_webrtc'
+  s.dependency 'LiveKitKrispNoiseFilter'
   s.platform = :osx, '10.11'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'

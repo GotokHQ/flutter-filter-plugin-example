@@ -3,7 +3,7 @@ import 'dart:async';
 
 // ignore: depend_on_referenced_packages
 import 'package:livekit_client/livekit_client.dart';
-import 'package:livekit_filter_plugin_example/livekit_filter_plugin_example.dart';
+import 'package:livekit_krisp_audio_filter/livekit_krisp_audio_filter.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _videoFilter = LivekitVideoFilter();
-  final _audioFilter = LivekitAudioFilter();
+  final _audioFilter = KrispAudioFilter();
   Room? _room;
 
   String url = 'ws://127.0.0.1:7880';
@@ -40,14 +39,21 @@ class _MyAppState extends State<MyApp> {
         defaultAudioCaptureOptions: AudioCaptureOptions(
           processor: _audioFilter,
         ),
-        defaultCameraCaptureOptions: CameraCaptureOptions(
-          processor: _videoFilter,
-        ),
       ),
     );
+
     await _room!.connect(url, token);
     await _room!.localParticipant!.setCameraEnabled(true);
     await _room!.localParticipant!.setMicrophoneEnabled(true);
+    await _audioFilter.updateRoomContext(
+      url: url,
+      token: token,
+      sid: await _room?.getSid(),
+      name: _room?.name,
+      serverRegion: _room?.serverRegion,
+      serverVersion: _room?.serverVersion,
+      connectionState: _room?.connectionState,
+    );
   }
 
   @override

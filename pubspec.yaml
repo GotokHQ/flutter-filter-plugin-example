@@ -1,4 +1,4 @@
-name: livekit_filter_plugin_example
+name: livekit_krisp_audio_filter
 description: "A new Flutter plugin project."
 version: 0.0.1
 homepage:
@@ -14,7 +14,6 @@ dependencies:
   livekit_client:
     git: 
       url: https://github.com/livekit/client-sdk-flutter.git
-      ref: feat/audio-filter-supports
 
 dev_dependencies:
   flutter_test:
@@ -39,12 +38,12 @@ flutter:
   plugin:
     platforms:
       android:
-        package: io.livekit.flutter.fliters.example.livekit_filter_plugin_example
-        pluginClass: LivekitFilterPluginExamplePlugin
+        package: io.livekit.flutter.fliters.krisp
+        pluginClass: KrispAudioFilterPlugin
       ios:
-        pluginClass: LivekitFilterPluginExamplePlugin
+        pluginClass: KrispAudioFilterPlugin
       macos:
-        pluginClass: LivekitFilterPluginExamplePlugin
+        pluginClass: KrispAudioFilterPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
